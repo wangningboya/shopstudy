@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping(value = "/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "queryById", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryById", method = RequestMethod.POST)
     public User queryById(
         @RequestParam String id
     ) {

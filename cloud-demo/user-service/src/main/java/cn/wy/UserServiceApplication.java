@@ -12,7 +12,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  **/
 @SpringBootApplication
 @MapperScan(basePackages = "cn.wy.mapper")
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class UserServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UserServiceApplication.class, args);
