@@ -1,6 +1,8 @@
 server:
   port: 8081
 spring:
+  application:
+    name: user-service
   aop:
     auto: true
   datasource:
@@ -15,5 +17,8 @@ mybatis:
     log-impl: org.apache.ibatis.logging.log4j2.Log4j2Impl
     jdbc-type-for-null: null
     map-underscore-to-camel-case: false
-#mybatis:
-#  type-aliases-package:
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
