@@ -3,11 +3,15 @@ package cn.wy.consumer.web;
 
 import cn.wy.consumer.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/consumer")
@@ -16,12 +20,19 @@ public class ConsumerController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
     @GetMapping(value = "/queryById")
     public User queryById(
-        @RequestParam String id
+            @RequestParam String id
     ) {
-        String url = "http://localhost:8081/user/queryById?id="+id;
-        User user = restTemplate.getForObject(url,User.class);
+        // 根据服务id获取实例
+        List<ServiceInstance> instances = discoveryClient.getInstances("user-service");
+        // 从实例中取出ip和端口
+        ServiceInstance serviceInstance = instances.get(0);
+        String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/user/queryById?id=" + id;
+        User user = restTemplate.getForObject(url, User.class);
         return user;
     }
 }
