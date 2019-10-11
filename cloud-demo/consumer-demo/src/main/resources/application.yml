@@ -8,4 +8,8 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
+      defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+    // 是否拉取服务列表
+    fetch-registry: true
+    // 拉取服务列表时长
+    registry-fetch-interval-seconds: 30
