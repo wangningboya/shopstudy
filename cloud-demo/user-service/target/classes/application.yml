@@ -22,3 +22,8 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
+  instance:
+    # 心跳周期30秒
+    lease-renewal-interval-in-seconds: 30
+    # 最小过期时长90秒
+    lease-expiration-duration-in-seconds: 90

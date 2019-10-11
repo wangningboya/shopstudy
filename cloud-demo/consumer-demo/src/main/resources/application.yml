@@ -1,5 +1,5 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
@@ -9,7 +9,33 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka,http://127.0.0.1:8762/eureka
-    // 是否拉取服务列表
+    # 是否拉取服务列表
     fetch-registry: true
-    // 拉取服务列表时长
+    # 拉取服务列表时长
     registry-fetch-interval-seconds: 30
+
+## ribbon随机
+#user-service:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+# 配置全局延迟
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+
+## feign开启hystrix熔断功能
+#feign:
+#  hystrix:
+#    enabled: true
+## feign的ribbon配置
+#ribbon:
+#  # 1秒连接报错
+#  ConnectionTimeOut: 1000
+#  # 2秒没返回值报错
+#  ReadTimeOut: 2000
