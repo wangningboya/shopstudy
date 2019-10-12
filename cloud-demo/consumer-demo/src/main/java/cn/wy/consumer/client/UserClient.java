@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserClient {
 
     @GetMapping("user/queryById")
-    User queryById(@RequestParam String id);
+    User queryById(@RequestParam("id") String id);
 
 }
