@@ -36,6 +36,6 @@ hystrix:
 ## feign的ribbon配置
 #ribbon:
 #  # 1秒连接报错
-#  ConnectionTimeOut: 1000
+#  ConnectionTimeout: 1000
 #  # 2秒没返回值报错
-#  ReadTimeOut: 2000
+#  ReadTimeout: 2000

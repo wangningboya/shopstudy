@@ -17,3 +17,17 @@ zuul:
 #      url: http://127.0.0.1:8081
       serviceId: user-service
 
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+ribbon:
+  # 1秒连接报错
+  ConnectionTimeOut: 1000
+  # 2秒没返回值报错
+  ReadTimeOut: 2000
+
